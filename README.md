@@ -68,12 +68,10 @@ cd ..
 
 #### Development mode (with hot-reloading):
 ```bash
-# Run both frontend and backend concurrently
-npm run start:all
 
 # Or run them separately
-npm run dev        # Frontend
-npm run backend    # Backend
+npm run dev        # Frontend()
+npm run dev    # Backend
 ```
 
 #### Production mode:
