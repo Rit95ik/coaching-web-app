@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Coaching Website
+
+This is a full-stack web application for a coaching website based on Next.js 14 (frontend), Node.js with TypeScript (backend), and MongoDB (database). It features a responsive homepage with dynamic sections and an admin panel for managing content.
+
+## Features
+
+- **Responsive Design**: Adapts to various screen sizes (mobile, tablet, desktop)
+- **Dynamic Homepage Sections**: Four main sections managed via backend API
+  - Hero Section with title, subtitle, and call-to-action buttons
+  - About Section with introductory text and image
+  - Featured Logos Section with client logos in horizontal scroll
+  - CTA/Footer Section with final call to action
+- **Admin Panel**: 
+  - Edit content for each section
+  - Drag-and-drop to reorder sections
+  - Full CRUD operations for homepage content
+- **MongoDB Integration**: Persistently store homepage section data
+- **Modern UI**: Built with TailwindCSS and custom UI components
+
+## Technology Stack
+
+- **Frontend**: Next.js 14 with App Router, React 19, TailwindCSS
+- **Backend**: Node.js, Express, TypeScript
+- **Database**: MongoDB
+- **Libraries**: react-beautiful-dnd (for drag-and-drop functionality)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js (v18+)
+- MongoDB (local installation or MongoDB Atlas account)
+
+### Setup
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd coaching-website
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+# Install frontend dependencies
+npm install --legacy-peer-deps
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Install backend dependencies
+cd backend
+npm install
+cd ..
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Configure environment variables:
+   - Create a `.env` file in the `backend` directory with:
+   ```
+   PORT=5000
+   MONGODB_URI=mongodb://localhost:27017/coaching-website
+   ```
 
-## Learn More
+4. Seed the database:
+```bash
+cd backend
+npm run seed
+cd ..
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Running the Application
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Development mode (with hot-reloading):
+```bash
+# Run both frontend and backend concurrently
+npm run start:all
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Or run them separately
+npm run dev        # Frontend
+npm run backend    # Backend
+```
 
-## Deploy on Vercel
+#### Production mode:
+```bash
+# Build frontend
+npm run build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Build backend
+cd backend
+npm run build
+cd ..
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Start both
+npm start          # Frontend
+npm run start:backend  # Backend
+```
+
+## Accessing the Application
+
+- **Frontend**: http://localhost:3000
+- **Admin Panel**: http://localhost:3000/admin
+- **Backend API**: http://localhost:5000
+
+## API Endpoints
+
+- `GET /api/sections` - Get all homepage sections
+- `GET /api/sections/:id` - Get a specific section
+- `POST /api/sections` - Create a new section
+- `PUT /api/sections/:id` - Update a section
+- `DELETE /api/sections/:id` - Delete a section
+- `PUT /api/sections/reorder` - Update section order
