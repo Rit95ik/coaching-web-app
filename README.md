@@ -70,8 +70,8 @@ cd ..
 ```bash
 
 # Or run them separately
-npm run dev        # Frontend()
-npm run dev    # Backend
+npm run dev        # Frontend(/coaching-web-app)
+npm run dev        # Backend (/coaching-web-app/backend)
 ```
 
 #### Production mode:
@@ -85,7 +85,7 @@ npm run build
 cd ..
 
 # Start both
-npm start          # Frontend
+npm start           # Frontend
 npm run start:backend  # Backend
 ```
 
